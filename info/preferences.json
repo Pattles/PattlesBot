@@ -1,0 +1,56 @@
+{
+    "primary":{
+        "arrow":"<:har_BlueGr:916065509265506314>",
+        "color":11854042,
+        "icon_url":"https://i.imgur.com/i5DsWjb.jpg",
+        "owner_id":480126550868754465,
+        "prefix":"p!",
+        "version":"1.0",
+        "displayed_strftime":"%B %d %Y, at %H:%M"
+    },
+    "data":{
+        "channels":{
+            
+        },
+        "roles":{
+            
+        }
+    },
+    "saved_text":{
+        "error":"An error has occurred. Please contact the team via <#896908794381086720>.",
+        "hyrtcc":"<:rx:927253476378038302> Uh oh! Have you ran the commmand correctly?",
+        "ratelimited":"Please wait a few minutes and try again.",
+        "swr":"<:rx:927253476378038302> Uh oh! Something went wrong.",
+        "required":"`<> - required`\n",
+        "optional":"`[] - optional`\n",
+        "foobar":"`foo/bar – choose either 'foo' or 'bar'`\n",
+        "aliases":"Aliases:",
+        "usage":"Usage:",
+        "syntax":"Syntax:",
+        "slash_command_only":"Slash command only."
+    },
+    "emojis":{
+        "redX":"<:rx:927253476378038302>",
+        "red_warning":"<:warning1:927644982939119647>",
+        "orange_warning":"<:warning2:927647628135649290>",
+        "green_warning":"<:warning3:927648325807800320>",
+        "staff_icon":"<:is:927255773002739732>",
+        "green_tick":"<:gt:941742582113906719>",
+        "grey_tick":"<:grt:979878800491941958>",
+        "task_list":"<:tl:922907034578477176>",
+        "twitter_logo":"<:twr:928928072424632351>",
+        "developer":"<:dv:927150451688898610>",
+        "house_1":"<:house_1:1067270807035859025>",
+        "plus_one":"<:plus_one:1067530164776484964>",
+        "minus_one":"<:minus_one:1067530247362330695>",
+        "nitro_boost":"<:nitro_boost:1068369833072267384>",
+        "humans":"<:humans:1068370002044014662>",
+        "robot_icon":"<:robot_icon:1068370206948335696>",
+        "text_channel":"<:textchannel:932682175332093952>",
+        "voice_channel":"<:voice_channel:1068372668027523142>",
+        "fun_emoji":"<:fun:1068377706988843079>",
+        "heart":"<:heart:1068794801685790752>",
+        "heart_animated":"<a:heart_anim:1068795579930525716>",
+        "party_popper":"<:tada_emoji:1069003779317436517>"
+    }
+}
