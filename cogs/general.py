@@ -22,13 +22,13 @@ class General(commands.Cog):
     async def serverinfo(self, ctx):
         embed = discord.Embed(title=ctx.guild.name, description=f'[Download Server Icon]({ctx.guild.icon})', color=self.bot.color)
 
-        # Getting information about the server owner.
+        """Getting information about the server owner."""
         desc = f'{ctx.guild.owner.mention} \n' \
             + f'{ctx.guild.owner} \n' \
             + f'{ctx.guild.owner_id}'
         embed.add_field(name='Owner:', value=desc)
 
-        # Getting informtion about the server's creation date.
+        """Getting informtion about the server's creation date."""
         duration = discord.utils.utcnow() - ctx.guild.created_at
         days, remainder = divmod(int(duration.total_seconds()), 86400)
         hours, minutes = divmod(remainder, 3600)
@@ -58,7 +58,7 @@ class General(commands.Cog):
 
         embed.add_field(name='Server Creation Date:', value=created_at_pretty + '\n' + str(ctx.guild.created_at)[:16] + ' UTC.\n' + discord.utils.format_dt(ctx.guild.created_at, 'f'))
 
-        # Less difficult-to-code in information (role count, member count, etc.)
+        """Less difficult-to-code in information (role count, member count, etc.)"""
         embed.add_field(name='Role Count:', value=len(ctx.guild.roles) - 1)
 
         bot_count = 0
@@ -77,7 +77,7 @@ class General(commands.Cog):
         embed.add_field(name='Channel Count:', value=f'{len(ctx.guild.channels)} Total Channels\n' + f'{self.bot.text_channel_emoji} {text_channel_count} Text Channels\n' + f'{self.bot.voice_channel_emoji} {voice_channel_count} Voice Channels')
         embed.add_field(name='Boost Level:', value=f'Boost Level {ctx.guild.premium_tier}\n' + f'{ctx.guild.premium_subscription_count} Boosts\n' + f'{len(ctx.guild.premium_subscribers)} Boosters')
 
-        # Other information about the server (icon, ID, etc.)
+        """Other information about the server (icon, ID, etc.)"""
         embed.set_thumbnail(url=ctx.guild.icon)
         embed.set_footer(text=f'Guild ID: {ctx.guild.id}')
 
@@ -91,7 +91,7 @@ class General(commands.Cog):
         embed = discord.Embed(title='Working...', description='I\'ll let you know when I\'m done.', color=self.bot.color)
         await ctx.send(embed=embed)
 
-        # Getting the amount of messages sent in all channels.
+        """Getting the amount of messages sent in all channels."""
         message_count = 0
         for channel in ctx.guild.text_channels:
             async for message in channel.history(limit=None):
@@ -132,7 +132,7 @@ class General(commands.Cog):
     @commands.hybrid_command(description='Forces the bot to leave the server.')
     @commands.has_permissions(kick_members=True)
     async def leave(self, ctx):
-        # Opening up all jsons.
+        """Opening up all jsons."""
         with open(LIKES_JSON, 'r') as infile:
             likes_json = json.load(infile)
         with open(LEVELING_JSON, 'r') as infile:
@@ -140,21 +140,21 @@ class General(commands.Cog):
         with open(GM_JSON, 'r') as infile:
             gm_json = json.load(infile)
 
-        # Checking if the bot has likes data. If so, clears all likes data from json.
+        """Checking if the bot has likes data. If so, clears all likes data from json."""
         if str(ctx.guild.id) in likes_json:
             del likes_json[str(ctx.guild.id)]
         
             with open(LIKES_JSON, 'w') as f:
                 json.dump(likes_json, f)
         
-        # Checking if the bot has leveling data. If so, clears all leveling data from json.
+        """Checking if the bot has leveling data. If so, clears all leveling data from json."""
         if str(ctx.guild.id) in leveling_json:
             del leveling_json[str(ctx.guild.id)]
 
             with open(LEVELING_JSON, 'w') as f:
                 json.dump(leveling_json, f)
 
-        # Checking if the bot has good_monrning_tracker data. If so, clears all good_monrning_tracker data from json.
+        """Checking if the bot has good_monrning_tracker data. If so, clears all good_monrning_tracker data from json."""
         if str(ctx.guild.id) in gm_json:
             del gm_json[str(ctx.guild.id)]
 

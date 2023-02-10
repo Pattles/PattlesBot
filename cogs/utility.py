@@ -24,16 +24,16 @@ class Utility(commands.Cog):
 
     @commands.hybrid_command(description='Converts a specified amount of ETH into USD.')
     async def tousd(self, ctx, eth_to_convert:float):
-        # Getting the objects, I have no clue how most of this works.
+        """Getting the objects, I have no clue how most of this works."""
         x = urllib.request.urlopen('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
         bytes_object = x.read()
         eth_dict = literal_eval(bytes_object.decode('utf-8'))
         eth_price_in_usd = eth_dict['USD']
 
-        # Converting ETH to USD with current ETH price.
+        """Converting ETH to USD with current ETH price."""
         result = eth_to_convert * eth_price_in_usd
 
-        # Sending response embed.
+        """Sending response embed."""
         embed = discord.Embed(title='ETH › USD', description=f'The exchange rate of ETH to USD is `${eth_price_in_usd}`', color=self.bot.color)
         embed.add_field(name='ETH', value=get_readable_number(round(eth_to_convert, 4)))
         embed.add_field(name='USD', value=f'${get_readable_number(round(result, 2))}')
@@ -42,16 +42,16 @@ class Utility(commands.Cog):
 
     @commands.hybrid_command(description='Converts a specified amount of USD into ETH.')
     async def toeth(self, ctx, usd_to_convert:float):
-        # Getting the objects, I have no clue how most of this works.
+        """Getting the objects, I have no clue how most of this works."""
         x = urllib.request.urlopen('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
         bytes_object = x.read()
         eth_dict = literal_eval(bytes_object.decode('utf-8'))
         eth_price_in_usd = eth_dict['USD']
 
-        # Converting ETH to USD with current ETH price.
+        """Converting ETH to USD with current ETH price."""
         result = usd_to_convert / eth_price_in_usd
 
-        # Sending response embed.
+        """Sending response embed."""
         embed = discord.Embed(title='USD › ETH', description=f'The exchange rate of ETH to USD is `${eth_price_in_usd}`', color=self.bot.color)
         embed.add_field(name='ETH', value=get_readable_number(round(result, 4)))
         embed.add_field(name='USD', value=f'${get_readable_number(round(usd_to_convert) if usd_to_convert % 10 == 0 else usd_to_convert)}')
@@ -79,7 +79,7 @@ class Utility(commands.Cog):
 
     @commands.hybrid_command(description='Displays the current ETH to USD exchange rate.')
     async def ethprice(self, ctx):
-        # Getting the objects, I have no clue how most of this works.
+        """Getting the objects, I have no clue how most of this works."""
         x = urllib.request.urlopen('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
         bytes_object = x.read()
         eth_dict = literal_eval(bytes_object.decode('utf-8'))

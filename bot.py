@@ -102,7 +102,7 @@ class PattlesBot(commands.Bot):
         if isinstance(error, (MissingRequiredArgument, BadArgument)):
             embed = discord.Embed(title=self.hyrtcc, description=f'Invalid command usage. \n\nFor more information about this command, type `{self.prefix}help {ctx.command.name}`.', color=self.color)
             
-            # Checking if the command has arguments, and therefore required syntax for the embed.
+            """Checking if the command has arguments, and therefore required syntax for the embed."""
             required = ''
             optional = ''
             foobar = ''
@@ -116,10 +116,10 @@ class PattlesBot(commands.Bot):
             if required != '' or optional != '':
                 embed.add_field(name="Syntax:", value=required + optional + foobar, inline=False)
             
-            # Adding command usage for the embed.
+            """Adding command usage for the embed."""
             embed.add_field(name=self.usage, value=f'```{self.prefix if "Slash command only." not in ctx.command.description else "/"}{ctx.command} {ctx.command.signature.replace("_", " ")}```', inline=False)
             
-            # Checking if the command has an alias for the embed.
+            """Checking if the command has an alias for the embed."""
             if ctx.command.aliases:
                 embed.add_field(name=self.aliases, value=f'`' + '`, `'.join(ctx.command.aliases) + '`', inline=False)
             await ctx.send(embed=embed)
@@ -136,8 +136,8 @@ class PattlesBot(commands.Bot):
 
             desc = f"I'm {self.user.mention}. My current prefixes are `{self.prefix}` & `/`.\n\n" \
                 + f"To view all my commands, type `{self.prefix}help`."
-            embed = discord.Embed(description=desc, color=self.color)
-            embed.set_footer(text=f"{self.user} • Asked by {message.author} • {local_time}", icon_url=message.author.avatar)
+            embed = discord.Embed(description=desc, color=self.color, timestamp=discord.utils.utcnow())
+            embed.set_footer(text=f"{self.user} • Asked by {message.author}", icon_url=message.author.avatar)
             await message.reply(embed=embed)
 
         await self.process_commands(message)

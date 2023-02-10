@@ -207,7 +207,7 @@ class Fun(commands.Cog):
         names = ''
 
         for postion, user in enumerate(top_members):
-            # Add 1 to postion to make the index start from 1.
+            """Add 1 to postion to make the index start from 1."""
             names += f'[**{get_ordinal(postion+1)}**]: <@!{user}> - {self.bot.heart_emoji if postion >= 3 else self.bot.heart_animated_emoji}**{top_members[user]}**\n'
             if postion >= 25 or postion + 1 == len(top_members):
                 embed = discord.Embed(title='Likes Leaderboard', description=names, color=self.bot.color)
@@ -224,11 +224,11 @@ class Fun(commands.Cog):
         if self.bot.prefix in message.content:
             return
 
-        # Checking if a member's profile exists in the json.
+        """Checking if a member's profile exists in the json."""
         with open(LEVELING_JSON, 'r') as infile:
             leveling_json = json.load(infile)
 
-        # If it doesn't, creates a fresh profile for the member.
+        """If it doesn't, creates a fresh profile for the member."""
         if str(message.author.id) not in leveling_json[str(message.guild.id)]:
             leveling_json[str(message.guild.id)][str(message.author.id)] = {}
             leveling_json[str(message.guild.id)][str(message.author.id)]['experience'] = 0
@@ -238,7 +238,7 @@ class Fun(commands.Cog):
                 json.dump(leveling_json, f)
             return
     
-        # If it does, then adds experience to the member's profile.
+        """If it does, then adds experience to the member's profile."""
         member_level = leveling_json[str(message.guild.id)][str(message.author.id)]['level']
         member_experience = leveling_json[str(message.guild.id)][str(message.author.id)]['experience']
                 
@@ -246,7 +246,7 @@ class Fun(commands.Cog):
         
         member_new_experience = member_experience + random.randint(2, 10)
 
-        # If a member's experience exceeds the required experience to level up, the member's level is +1 and their experience is reset.
+        """If a member's experience exceeds the required experience to level up, the member's level is +1 and their experience is reset."""
         if level_up_formula - member_new_experience <= 0:
             member_new_level = leveling_json[str(message.guild.id)][str(message.author.id)]['level'] + 1
 
@@ -260,7 +260,7 @@ class Fun(commands.Cog):
             await message.channel.send(embed=embed)
             return
         
-        # If it doesn't, then the member's experience is updated.    
+        """If it doesn't, then the member's experience is updated."""
         leveling_json[str(message.guild.id)][str(message.author.id)]['experience'] = member_new_experience
         
         with open(LEVELING_JSON, 'w') as f:
@@ -279,22 +279,22 @@ class Fun(commands.Cog):
         embed = discord.Embed(description='Working...', color=self.bot.color)
         msg = await ctx.send(embed=embed)
 
-        # Checking if a member's profile exists in the json.
+        """Checking if a member's profile exists in the json."""
         with open(LEVELING_JSON, 'r') as infile:
             leveling_json = json.load(infile)
 
-        # If it doesn't, sends a response embed.
+        """If it doesn't, sends a response embed."""
         if str(member.id) not in leveling_json[str(ctx.guild.id)]:
             embed = discord.Embed(description=f'{member.mention} has no XP. Maybe start a conversation with them?', color=self.bot.color)
             await ctx.send(embed=embed)
             return
 
-        # Getting some objects that are required for the profile.
+        """Getting some objects that are required for the profile."""
         member_level = leveling_json[str(ctx.guild.id)][str(member.id)]['level']
         member_experience = leveling_json[str(ctx.guild.id)][str(member.id)]['experience']
         level_up_formula = 5 * (member_level ** 2) + (50 * member_level) + 100
 
-        # If it does, displays the member's profile.
+        """If it does, displays the member's profile."""
         embed = discord.Embed(title=f'{member} | Level', color=self.bot.color)
         embed.add_field(name='Level:', value=f'{member.mention} is level **{member_level}**.')
         embed.add_field(name='XP Left to Next Level:', value=
@@ -325,11 +325,11 @@ class Fun(commands.Cog):
         embed = discord.Embed(description='Working...', color=self.bot.color)
         msg = await ctx.send(embed=embed)
         
-        # Checking if a member's profile exists in the json.
+        """Checking if a member's profile exists in the json."""
         with open(LEVELING_JSON, 'r') as infile:
             leveling_json = json.load(infile)
 
-        # If it doesn't, creates a fresh profile for the member.
+        """If it doesn't, creates a fresh profile for the member."""
         if str(member.id) not in leveling_json[str(ctx.guild.id)]:
             leveling_json[str(ctx.guild.id)][str(member.id)] = {}
             leveling_json[str(ctx.guild.id)][str(member.id)]['experience'] = 0
@@ -361,11 +361,11 @@ class Fun(commands.Cog):
         embed = discord.Embed(description='Working...', color=self.bot.color)
         msg = await ctx.send(embed=embed)
 
-        # Checking if a member's profile exists in the json.
+        """Checking if a member's profile exists in the json."""
         with open(LEVELING_JSON, 'r') as infile:
             leveling_json = json.load(infile)
 
-        # If it doesn't, creates a fresh profile for the member.
+        """If it doesn't, creates a fresh profile for the member."""
         if str(member.id) not in leveling_json[str(ctx.guild.id)]:
             leveling_json[str(ctx.guild.id)][str(member.id)] = {}
             leveling_json[str(ctx.guild.id)][str(member.id)]['experience'] = 0
@@ -391,7 +391,7 @@ class Fun(commands.Cog):
         embed = discord.Embed(description='Working...', color=self.bot.color)
         msg = await ctx.send(embed=embed)
 
-        # Getting all of the members' profiles in a dict.
+        """Getting all of the members' profiles in a dict."""
         with open(LEVELING_JSON, 'r') as infile:
             leveling_json = json.load(infile)
 
@@ -405,7 +405,7 @@ class Fun(commands.Cog):
         names = ''
 
         for postion, user in enumerate(top_members):
-            # Add 1 to postion to make the index start from 1.
+            """Add 1 to postion to make the index start from 1."""
             names += f'[**{get_ordinal(postion+1)}**]: <@!{user}> - Level **{top_members[user]}**\n'
             if postion >= 25 or postion + 1 == len(top_members):
                 embed = discord.Embed(title='Levels Leaderboard', description=names, color=self.bot.color)
@@ -431,7 +431,7 @@ class Fun(commands.Cog):
         embed = discord.Embed(description='Working...', color=self.bot.color)
         msg = await ctx.send(embed=embed)
 
-        # Getting the JSONs.
+        """Getting the JSONs."""
         with open(LIKES_JSON, 'r') as infile:
             likes_json = json.load(infile)
         with open(LEVELING_JSON, 'r') as infile:
@@ -447,7 +447,7 @@ class Fun(commands.Cog):
         if str(member.id) in gm_json[str(ctx.guild.id)]:
             gm_count = gm_json[str(ctx.guild.id)][str(member.id)]['good_mornings']
 
-        # Sending the response embed.
+        """Sending the response embed."""
         embed = discord.Embed(title=f'{member} | Profile', color=self.bot.color)
         embed.add_field(name='Likes:', value=f'{self.bot.heart_emoji} {amount_of_likes}')
         embed.add_field(name='Level:', value=f'Level **{member_level}**')
@@ -496,11 +496,11 @@ class Fun(commands.Cog):
         if message.guild.id != 916133196184301668:
             return
 
-        # Getting gm_counter.json
+        """Getting gm_counter.json"""
         with open(GM_JSON, 'r') as infile:
             gm_json = json.load(infile)
 
-        # If the member has 0 gms, create a new profile.
+        """If the member has 0 gms, create a new profile."""
         if str(message.author.id) not in gm_json[str(message.guild.id)]:
             gm_json[str(message.guild.id)][str(message.author.id)] = {}
             gm_json[str(message.guild.id)][str(message.author.id)]['good_mornings'] = 1
@@ -509,7 +509,7 @@ class Fun(commands.Cog):
                 json.dump(gm_json, f)
             return
         
-        # If the member has at least 1 gm, +1 to their gm count.
+        """If the member has at least 1 gm, +1 to their gm count."""
         gm_json[str(message.guild.id)][str(message.author.id)]['good_mornings'] += 1
 
         with open(GM_JSON, 'w') as f:
@@ -560,7 +560,7 @@ class Fun(commands.Cog):
         names = ''
 
         for postion, user in enumerate(top_members):
-            # Add 1 to postion to make the index start from 1.
+            """Add 1 to postion to make the index start from 1."""
             names += f'[**{get_ordinal(postion+1)}**]: <@!{user}> - **{top_members[user]}** GMs\n'
             if postion >= 25 or postion + 1 == len(top_members):
                 embed = discord.Embed(title='GMs Leaderboard', description=names, color=self.bot.color)

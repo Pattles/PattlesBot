@@ -42,7 +42,7 @@ class Management(commands.Cog):
         embed = discord.Embed(description='Working...', color=self.bot.color)
         msg = await ctx.send(embed=embed)
 
-        # Opening up all jsons.
+        """Opening up all jsons."""
         with open(LIKES_JSON, 'r') as infile:
             likes_json = json.load(infile)
         with open(LEVELING_JSON, 'r') as infile:
@@ -50,15 +50,15 @@ class Management(commands.Cog):
         with open(GM_JSON, 'r') as infile:
             gm_json = json.load(infile)
 
-        # Checking if the bot already has the guild's data.
+        """Checking if the bot already has the guild's data."""
         if str(ctx.guild.id) in likes_json and str(ctx.guild.id) in leveling_json and str(ctx.guild.id) in gm_json:
             embed = discord.Embed(description=f'It looks like the bot has already been setup by someone in **{ctx.guild.name}**.', color=self.bot.color)
             await msg.edit(embed=embed)
             return
         
-        # If not, moves on to the rest of the command.
+        """If not, moves on to the rest of the command."""
 
-        # Setting up the 'likes' module.        
+        """Setting up the 'likes' module."""
         if str(ctx.guild.id) not in likes_json:
             likes_json[str(ctx.guild.id)] = {}
             likes_json[str(ctx.guild.id)][str(ctx.author.id)] = {}
@@ -67,7 +67,7 @@ class Management(commands.Cog):
             with open(LIKES_JSON, 'w') as f:
                 json.dump(likes_json, f)
 
-        # Settings up the 'leveling' module.
+        """Settings up the 'leveling' module."""
         if str(ctx.guild.id) not in leveling_json:
             leveling_json[str(ctx.guild.id)] = {}
             leveling_json[str(ctx.guild.id)][str(ctx.author.id)] = {}
@@ -77,7 +77,7 @@ class Management(commands.Cog):
             with open(LEVELING_JSON, 'w') as f:
                 json.dump(leveling_json, f)
 
-        # Setting up the 'gm_tracker' module.        
+        """Setting up the 'gm_tracker' module."""
         if str(ctx.guild.id) not in gm_json:
             gm_json[str(ctx.guild.id)] = {}
             gm_json[str(ctx.guild.id)][str(ctx.author.id)] = {}
@@ -88,36 +88,6 @@ class Management(commands.Cog):
 
         embed = discord.Embed(description=f'Successfully setup the bot for **{ctx.guild.name}**. Have fun!', color=self.bot.color)
         await msg.edit(embed=embed)
-
-
-        
-        """
-        if str(ctx.guild.id) not in guild_data_dict:
-            guild_data_dict[str(ctx.guild.id)] = {}
-            
-            # Setting up for the 'likes' module
-            guild_data_dict[str(ctx.guild.id)]['member_likes'] = {}
-            guild_data_dict[str(ctx.guild.id)]['member_likes'][str(self.bot.user.id)] = {}
-            guild_data_dict[str(ctx.guild.id)]['member_likes'][str(self.bot.user.id)]['likes'] = 0
-
-            # Setting up for the 'leveling' module
-            guild_data_dict[str(ctx.guild.id)]['leveling'] = {}
-
-            # Setting up for the 'tags' module
-            guild_data_dict[str(ctx.guild.id)]['tags'] = {}
-
-            with open(GUILD_DATA_JSON, 'w') as f:
-                json.dump(guild_data_dict, f)
-            
-            embed = discord.Embed(description=f'Successfully setup the bot for **{ctx.guild.name}**. Have fun!', color=self.bot.color)
-            await msg.edit(embed=embed)
-            return
-        """
-        
-
-
-
-
 
 async def setup(bot):
     await bot.add_cog(Management(bot))
