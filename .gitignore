@@ -1,2 +1,3 @@
-info/token.json
 command_grave.py
+token.env
+command_grave.txt
