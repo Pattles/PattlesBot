@@ -2,6 +2,7 @@ import datetime
 import json
 import sys
 import traceback
+import os
 from datetime import datetime, timezone
 
 import discord
@@ -9,6 +10,10 @@ from discord.ext import commands
 from discord.ext.commands.errors import *
 
 from functions import *
+from dotenv import load_dotenv
+
+load_dotenv('token.env')
+
 
 def load_token():
     with open("./info/token.json") as f:
@@ -35,7 +40,7 @@ class PattlesBot(commands.Bot):
         super().__init__(help_command=MyHelp(command_attrs={'aliases':['h'], 'description':'Displays a list of all available commands. Text command only.'}), command_prefix=commands.when_mentioned_or(preferences['primary']['prefix']), intents=discord.Intents.all(), case_insensitive=True, activity=discord.Activity(type=discord.ActivityType.playing, name=f"mind games"))
         self.client_id = 1038161541230501959
         self.owner_id = 480126550868754465
-        self.token = load_token()["token"]
+        self.token = os.getenv('TOKEN')
 
         # Important information. 
         self.prefix = preferences['primary']['prefix']
