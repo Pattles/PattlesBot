@@ -2,3 +2,4 @@ command_grave.py
 token.env
 command_grave.txt
 info/leveling.json
+cogs/__pycache__
