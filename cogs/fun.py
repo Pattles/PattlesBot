@@ -46,7 +46,7 @@ class Fun(commands.Cog):
         embed = discord.Embed(description=f'{ctx.author.mention}\'s IQ is `{random.randint(20, 170)}`.', color=self.bot.color)
         await ctx.send(embed=embed)
 
-    @commands.hybrid_command(description=f'Ask the magic eight ball a question and receive advice. {preferences["saved_text"]["slash_command_only"]}')
+    @commands.hybrid_command(name='8ball', description=f'Ask the magic eight ball a question and receive advice. {preferences["saved_text"]["slash_command_only"]}')
     async def eightball(self, ctx, question:str):
         if not ctx.interaction:
             await not_interaction_embed(self, ctx)
@@ -413,7 +413,7 @@ class Fun(commands.Cog):
                 await msg.edit(embed=embed)
                 return
     
-    @commands.hybrid_command(description='Displays your or a mentioned member\'s profile. Fit with level and likes.')
+    @commands.hybrid_command(description='Displays your or a mentioned member\'s profile. Fit with level, likes, and GMs.')
     async def profile(self, ctx, member:discord.Member=None):
         if not member:
             member = ctx.author
