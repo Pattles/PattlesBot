@@ -147,7 +147,7 @@ class PattlesBot(commands.Bot):
 
 class MyHelp(commands.HelpCommand):
     async def send_bot_help(self, mapping):
-        embed = discord.Embed(title=f'Help | {self.context.author}', description=f'{PattlesBot.user.mention} is a powerful Discord bot which is working on becoming the best Discord bot on the market. \n\nFor custom Discord bot development, visit https://pattlesstore.com/.', color=PattlesBot.color)
+        embed = discord.Embed(title=f'Help | {self.context.author}', description='PattlesBot is a multi-purpose bot aimed at providing utility, moderation, logging, games, and more to communities. \n\nFor custom Discord bot development, visit https://pattlesstore.com/.', color=PattlesBot.color)
 
         for cog, commands in mapping.items():
             if cog:

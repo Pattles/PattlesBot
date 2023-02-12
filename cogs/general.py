@@ -109,7 +109,7 @@ class General(commands.Cog):
 
     @commands.hybrid_command(description='Displays some information about the bot.')
     async def about(self, ctx):
-        desc = f'{self.bot.user.mention} is a powerful Discord bot which is working on becoming the best Discord bot on the market. \n\nFor custom Discord bot development, visit https://pattlesstore.com/.'
+        desc = 'PattlesBot is a multi-purpose bot aimed at providing utility, moderation, logging, games, and more to communities. \n\nFor custom Discord bot development, visit https://pattlesstore.com/.'
         information = f'{self.bot.arrow} **Python:** 3.9.7\n' \
             + f'{self.bot.arrow} **Library:** [discord.py 2.0.1](https://github.com/Rapptz/discord.py)\n' \
             + f'{self.bot.arrow} **Latency:** {round(self.bot.latency * 1000)} ms\n' \
