@@ -84,7 +84,16 @@ class Developer(commands.Cog):
         if ctx.author.id != self.bot.owner_id:
             return
 
-        await ctx.send(self.bot.guilds)
+    @commands.command(description='Fetches a list of guild names that the bot is in. Text command only.')
+    async def guilds(self, ctx):
+        if ctx.author.id != self.bot.owner_id:
+            return
+
+        guilds = [guild.name for guild in self.bot.guilds]
+
+        embed = discord.Embed(title=f'Guilds {self.bot.user} is in:', description='\n'.join(guilds), color=self.bot.color)
+        await ctx.send(embed=embed)
+        
 
 
 async def setup(bot):
