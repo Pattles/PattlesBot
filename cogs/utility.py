@@ -86,30 +86,7 @@ class Utility(commands.Cog):
         eth_price_in_usd = eth_dict['USD']
 
         embed = discord.Embed(title='ETH to USD Exchange Rate', description=f'As of {get_local_time(self)} UTC, ETH is `{eth_price_in_usd}` USD.', color=self.bot.color)
-        await ctx.send(embed=embed)
-
-    @commands.hybrid_command(description=f'Sends an idea into the ideas channel. {preferences["saved_text"]["slash_command_only"]}')
-    async def idea(self, ctx, explanation:str):
-        if not ctx.interaction:
-            await not_interaction_embed(self, ctx)
-            return
-
-        ideas_channel = self.bot.get_channel(1068628218334150686)
-
-        embed = discord.Embed(title=f'New Idea by {ctx.author}', description=explanation, color=self.bot.color)
-        msg = await ideas_channel.send(embed=embed)
-
-        embed = discord.Embed(description=f'Successfully sent your idea into the {ideas_channel.mention} channel. [Jump to idea.]({msg.jump_url})', color=self.bot.color)
-        await ctx.send(embed=embed)
-
-
-   
-
-
-        
-        
-
-    
+        await ctx.send(embed=embed)    
 
 async def setup(bot):
     await bot.add_cog(Utility(bot))
