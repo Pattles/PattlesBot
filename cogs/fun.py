@@ -306,6 +306,7 @@ class Fun(commands.Cog):
         await msg.edit(embed=embed)
 
     @commands.hybrid_command(description='Set a member to a certain level.')
+    @commands.has_permissions(manage_roles=True)
     async def setlevel(self, ctx, member:discord.Member, level:int):
         if member.bot:
             embed = discord.Embed(description=f'You cannot change the level of bots.', color=self.bot.color)
