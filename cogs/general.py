@@ -126,7 +126,7 @@ class General(commands.Cog):
 
     @commands.hybrid_command(description='Get an invite link to invite the bot to a server.')
     async def invite(self, ctx):
-        embed = discord.Embed(description='Click [here](https://discord.com/api/oauth2/authorize?client_id=1038161541230501959&permissions=2147838978&scope=bot%20applications.commands) to invite the bot.', color=self.bot.color)
+        embed = discord.Embed(description='Click [here](https://discord.com/api/oauth2/authorize?client_id=1038161541230501959&permissions=2416274434&scope=applications.commands%20bot) to invite the bot.', color=self.bot.color)
         await ctx.send(embed=embed)
 
     @commands.hybrid_command(description='Forces the bot to leave the server.')
@@ -162,7 +162,7 @@ class General(commands.Cog):
                 json.dump(gm_json, f)
 
 
-        embed = discord.Embed(description=f'Leaving **{ctx.guild.name}**. If you wish to re-invite the bot, click [here](https://discord.com/api/oauth2/authorize?client_id=1038161541230501959&permissions=2147838978&scope=bot%20applications.commands).', color=self.bot.color)
+        embed = discord.Embed(description=f'Leaving **{ctx.guild.name}**. If you wish to re-invite the bot, click [here](https://discord.com/api/oauth2/authorize?client_id=1038161541230501959&permissions=2416274434&scope=applications.commands%20bot).', color=self.bot.color)
         await ctx.send(embed=embed)
 
         await ctx.guild.leave()
