@@ -111,9 +111,8 @@ class General(commands.Cog):
     async def about(self, ctx):
         desc = 'PattlesBot is a multi-purpose bot aimed at providing utility, moderation, logging, games, and more to communities. \n\nFor custom Discord bot development, visit https://pattlesstore.com/.'
         information = f'{self.bot.arrow} **Python:** 3.9.7\n' \
-            + f'{self.bot.arrow} **Library:** [discord.py 2.0.1](https://github.com/Rapptz/discord.py)\n' \
+            + f'{self.bot.arrow} **Library:** [discord.py {discord.__version__}](https://github.com/Rapptz/discord.py)\n' \
             + f'{self.bot.arrow} **Latency:** {round(self.bot.latency * 1000)} ms\n' \
-            + f'{self.bot.arrow} **Version:** {self.bot.version}\n' \
             + f'{self.bot.arrow} **Servers:** {get_readable_number(len(self.bot.guilds))}'
         links = f'{self.bot.arrow} **Discord:** [Click me](https://discord.gg/pattlesstore)\n' \
             + f'{self.bot.arrow} **Website:** [Click me](https://pattlesstore.com/)\n'
@@ -137,15 +136,15 @@ class General(commands.Cog):
             likes_json = json.load(infile)
         with open(LEVELING_JSON, 'r') as infile:
             leveling_json = json.load(infile)
-        with open(GM_JSON, 'r') as infile:
-            gm_json = json.load(infile)
+        # with open(GM_JSON, 'r') as infile:
+            # gm_json = json.load(infile)
 
-        """Checking if the bot has likes data. If so, clears all likes data from json."""
-        if str(ctx.guild.id) in likes_json:
-            del likes_json[str(ctx.guild.id)]
-        
-            with open(LIKES_JSON, 'w') as f:
-                json.dump(likes_json, f)
+        # """Checking if the bot has likes data. If so, clears all likes data from json."""
+        # if str(ctx.guild.id) in likes_json:
+            # del likes_json[str(ctx.guild.id)]
+
+            # with open(LIKES_JSON, 'w') as f:
+                # json.dump(likes_json, f)
         
         """Checking if the bot has leveling data. If so, clears all leveling data from json."""
         if str(ctx.guild.id) in leveling_json:
@@ -154,26 +153,18 @@ class General(commands.Cog):
             with open(LEVELING_JSON, 'w') as f:
                 json.dump(leveling_json, f)
 
-        """Checking if the bot has good_monrning_tracker data. If so, clears all good_monrning_tracker data from json."""
-        if str(ctx.guild.id) in gm_json:
-            del gm_json[str(ctx.guild.id)]
+        # """Checking if the bot has good_monrning_tracker data. If so, clears all good_monrning_tracker data from json."""
+        # if str(ctx.guild.id) in gm_json:
+            # del gm_json[str(ctx.guild.id)]
 
-            with open(GM_JSON, 'w') as f:
-                json.dump(gm_json, f)
+            # with open(GM_JSON, 'w') as f:
+                # json.dump(gm_json, f)
 
 
         embed = discord.Embed(description=f'Leaving **{ctx.guild.name}**. If you wish to re-invite the bot, click [here](https://discord.com/api/oauth2/authorize?client_id=1038161541230501959&permissions=2416274434&scope=applications.commands%20bot).', color=self.bot.color)
         await ctx.send(embed=embed)
 
         await ctx.guild.leave()
-
-    @commands.hybrid_command(description='Lets you know how many commands exist.')
-    async def commands(self, ctx):
-        embed = discord.Embed(description=f'{self.bot.user.mention} has `{len(self.bot.commands)}` commands.', color=self.bot.color)
-        await ctx.send(embed=embed)
-
-
-    
 
 
 async def setup(bot):

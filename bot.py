@@ -24,7 +24,8 @@ INITIAL_EXTENSIONS = [
     'cogs.fun',
     'cogs.general',
     'cogs.management',
-    'cogs.utility'
+    'cogs.utility',
+    'cogs.testing' # remove after completion
     ]
 
 LEVELING_JSON = './info/leveling.json'
