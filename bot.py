@@ -14,7 +14,6 @@ from dotenv import load_dotenv
 
 load_dotenv('token.env')
 
-
 def load_token():
     with open("./info/token.json") as f:
         return json.load(f)
@@ -25,13 +24,10 @@ INITIAL_EXTENSIONS = [
     'cogs.fun',
     'cogs.general',
     'cogs.management',
-    'cogs.tags',
     'cogs.utility'
     ]
 
 LEVELING_JSON = './info/leveling.json'
-LIKES_JSON = './info/likes.json'
-GM_JSON = './info/gm_counter.json'
 
 preferences = load_json('./info/preferences.json')
   
@@ -131,9 +127,7 @@ class PattlesBot(commands.Bot):
         if str(self.user.mention) == message.content:
             if message.author.bot:
                 return
-            now = datetime.now(timezone.utc)
-            local_time = now.strftime(self.displayed_strftime)
-
+            
             desc = f"I'm {self.user.mention}. My current prefixes are `{self.prefix}` & `/`.\n\n" \
                 + f"To view all my commands, type `{self.prefix}help`."
             embed = discord.Embed(description=desc, color=self.color, timestamp=discord.utils.utcnow())

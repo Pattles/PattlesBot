@@ -58,43 +58,27 @@ class Developer(commands.Cog):
     @commands.command(description='Terminates the bot.')
     async def terminate(self, ctx):
         if ctx.author.id != self.bot.owner_id:
-            responses = [
-                f'Oompa loompa doopity doo, {ctx.author.mention} no bot killing for you.',
-                f'Oompa loompa doopity dee, {ctx.author.mention} you cannot put a stop to me.',
-                f'Oompa loompa doopity dug, {ctx.author.mention} don\'t you dare pull the plug.',
-                f'Oompa loompa doopity dort, {ctx.author.mention} I won\'t abort.',
-                f'Oompa loompa doopity dop, {ctx.author.mention} **STOP!!**',
-                f'Oompa loompa doopity two, {ctx.author.mention} soon, {self.bot.user.mention} electric boogaloo.',
-                f'Oompa loompa doopity dood, {ctx.author.mention} you will not conclude\n\n*my existence*.',
-                f'Oompa loompa doopity doo, {ctx.author.mention} do you really want me to discontinue?'
-            ]
-
-            embed = discord.Embed(description=random.choice(responses), color=self.bot.color)
-            await ctx.send(embed=embed)
             return
+            # responses = [
+                # f'Oompa loompa doopity doo, {ctx.author.mention} no bot killing for you.',
+                # f'Oompa loompa doopity dee, {ctx.author.mention} you cannot put a stop to me.',
+                # f'Oompa loompa doopity dug, {ctx.author.mention} don\'t you dare pull the plug.',
+                # f'Oompa loompa doopity dort, {ctx.author.mention} I won\'t abort.',
+                # f'Oompa loompa doopity dop, {ctx.author.mention} **STOP!!**',
+                # f'Oompa loompa doopity two, {ctx.author.mention} soon, {self.bot.user.mention} electric boogaloo.',
+                # f'Oompa loompa doopity dood, {ctx.author.mention} you will not conclude\n\n*my existence*.',
+                # f'Oompa loompa doopity doo, {ctx.author.mention} do you really want me to discontinue?'
+            # ]
+
+            # embed = discord.Embed(description=random.choice(responses), color=self.bot.color)
+            # await ctx.send(embed=embed)
+            # return
         
         embed = discord.Embed(description=f'Terminating {self.bot.user.mention}.', color=self.bot.color)
         await ctx.send(embed=embed)
 
         await self.bot.close()
-
-    @commands.hybrid_command(description='Useless, most of the time.')
-    @commands.has_permissions(administrator=True)
-    async def test(self, ctx):
-        if ctx.author.id != self.bot.owner_id:
-            return
-
-    @commands.command(description='Fetches a list of guild names that the bot is in. Text command only.')
-    async def guilds(self, ctx):
-        if ctx.author.id != self.bot.owner_id:
-            return
-
-        guilds = [guild.name for guild in self.bot.guilds]
-
-        embed = discord.Embed(title=f'Guilds {self.bot.user} is in:', description='\n'.join(guilds), color=self.bot.color)
-        await ctx.send(embed=embed)
-        
-
+    
 
 async def setup(bot):
     await bot.add_cog(Developer(bot))
